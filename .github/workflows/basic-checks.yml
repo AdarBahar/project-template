@@ -16,8 +16,12 @@ jobs:
       
     - name: Basic validation
       run: |
-        echo "✅ Repository structure looks good"
-        echo "✅ Basic validation passed"
+        if [ -d ".github" ] && [ -d "src" ]; then
+          echo "✅ Repository structure looks good"
+        else
+          echo "❌ Repository structure is invalid. Ensure '.github' and 'src' directories exist."
+          exit 1
+        fi
         
     - name: Check for README
       run: |
